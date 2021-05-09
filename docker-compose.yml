@@ -1,7 +1,7 @@
-version: '2'
+version: '2.1'
 services:
   netspeed:
-    image: ryandev/netspeed
+    image: firbykirby/netspeed
     ports:
       - "80"
     restart: always
