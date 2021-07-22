@@ -9,7 +9,7 @@ import util from './dashboard.util';
 const mapStateToProps = (state: IGlobalState, config: IConfig = IOC().config()): IDashboardProps => {
     const latencyProps: IDashboardStatusItem = {
         name : "LATENCY",
-        value : Math.round(state?.SpeedTest?.latency ?? -1) + "ms",
+        value : Math.round(state?.SpeedTest?.latency ?? -1) + " ms",
         status : (state?.SpeedTest?.latency ?? config.threshold.latency.error) >= config.threshold.latency.error
             ? DashboardStatusValue.Bad
             : state?.SpeedTest?.latency > config.threshold.latency.warning
@@ -19,7 +19,7 @@ const mapStateToProps = (state: IGlobalState, config: IConfig = IOC().config()):
 
     const jitterProps: IDashboardStatusItem = {
         name : "JITTER",
-        value : Math.round(state?.SpeedTest?.jitter ?? -1) + "ms",
+        value : Math.round(state?.SpeedTest?.jitter ?? -1) + " ms",
         status : (state?.SpeedTest?.jitter ?? config.threshold.jitter.error) >= config.threshold.jitter.error
             ? DashboardStatusValue.Bad
             : state?.SpeedTest?.jitter > config.threshold.jitter.warning
@@ -29,7 +29,7 @@ const mapStateToProps = (state: IGlobalState, config: IConfig = IOC().config()):
 
     const ulProps: IDashboardStatusItem = {
         name : "UPLOAD",
-        value : Math.round(state?.SpeedTest?.uploadSpeed ?? -1) + "Mbps",
+        value : Math.round(state?.SpeedTest?.uploadSpeed ?? -1) + " Mbps",
         status : state?.SpeedTest?.uploadSpeed <= config.threshold.upload.error
             ? DashboardStatusValue.Bad
             : state?.SpeedTest?.uploadSpeed < config.threshold.upload.warning
@@ -39,7 +39,7 @@ const mapStateToProps = (state: IGlobalState, config: IConfig = IOC().config()):
 
     const dlProps: IDashboardStatusItem = {
         name : "DOWNLOAD",
-        value : Math.round(state?.SpeedTest?.downloadSpeed ?? -1) + "Mbps",
+        value : Math.round(state?.SpeedTest?.downloadSpeed ?? -1) + " Mbps",
         status : state?.SpeedTest?.downloadSpeed < config.threshold.download.error
             ? DashboardStatusValue.Bad
             : state?.SpeedTest?.downloadSpeed < config.threshold.download.warning
@@ -53,7 +53,7 @@ const mapStateToProps = (state: IGlobalState, config: IConfig = IOC().config()):
     const infoTextLeft = isTestRunning
         ? ''
         : util.describeDifferenceBetweenDates(dateOfLastTest, new Date());
-    
+
     return {
         statusItems: [latencyProps, jitterProps, dlProps, ulProps],
         showInfoIcon: true,
@@ -62,7 +62,7 @@ const mapStateToProps = (state: IGlobalState, config: IConfig = IOC().config()):
         infoTextRight: clientIp,
         infoIconRight: "map-marker",
         refreshPageInterval: Math.max(1, config.view.refreshPageInterval)
-    
+
     };
 };
 

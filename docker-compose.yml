@@ -1,16 +1,23 @@
-version: '2.1'
+version: '2'
+#environment:
+#    - TZ=America/Chicago
+#    - BALENA_HOST_CONFIG_display_rotate=2
+#    - RESIN_HOST_CONFIG_gpu_mem=128
 services:
   netspeed:
-    image: firbykirby/netspeed
+    build: ./
     ports:
       - "80"
     restart: always
   browser:
-    image: balenablocks/browser
+#    image: balenablocks/browser:latest
+    image: phildwilson/browser:latest #Alternative image with raspberry-pi support.
     network_mode: host
     privileged: true
     environment:
-        - 'KIOSK=1'
+        - KIOSK=1
   fbcp:
     image: balenablocks/fbcp
     privileged: true
+    environment:
+        - FBCP_DISPLAY=waveshare35b-ili9486
